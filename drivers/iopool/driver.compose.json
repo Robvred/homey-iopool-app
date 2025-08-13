@@ -4,6 +4,7 @@
     "fr": "Piscine iopool"
   },
   "class": "sensor",
+  "icon": "drivers/iopool/assets/icon.svg",
   "capabilities": [
     "measure_temperature",
     "measure_ph",
@@ -20,18 +21,21 @@
       "units": "°C"
     }
   },
-"pair": [
-  {
-    "id": "list_my_devices",
-    "template": "list_devices",
-    "options": { "singular": true },
-    "navigation": { "next": "add_my_devices" }
+  "images": {
+    "large": "drivers/iopool/assets/large.png",
+    "small": "drivers/iopool/assets/small.png"
   },
-  {
-    "id": "add_my_devices",
-    "template": "add_devices",
-    "navigation": { "prev": "list_my_devices" }
-  }
-]
-
+  "pair": [
+    {
+      "id": "list_my_devices",
+      "template": "list_devices",
+      "options": { "singular": true },
+      "navigation": { "next": "add_my_devices" }
+    },
+    {
+      "id": "add_my_devices",
+      "template": "add_devices",
+      "navigation": { "prev": "list_my_devices" }
+    }
+  ]
 }
