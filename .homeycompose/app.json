@@ -1,0 +1,43 @@
+{
+  "id": "com.iopool.api",
+  "sdk": 3,
+  "name": { "en": "iopool Pool Monitor", "fr": "Moniteur iopool" },
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "description": { "en": "Monitor your iopool pool in Homey", "fr": "Surveillez votre bassin iopool dans Homey" },
+  "brandColor": "#00A9B4",
+  "author": { "name": "Robvred" },
+  "category": "appliances",
+  "permissions": [],
+
+  "icon": "assets/icon.svg",
+  "images": {
+    "large": "assets/large.png",
+    "small": "assets/small.png"
+  },
+
+  "drivers": [
+    {
+      "id": "iopool",
+      "name": { "en": "iopool Pool", "fr": "Piscine iopool" },
+      "class": "sensor",
+      "icon": "drivers/iopool/assets/icon.svg",
+      "images": {
+        "large": "drivers/iopool/assets/large.png",
+        "small": "drivers/iopool/assets/small.png"
+      },
+      "capabilities": [
+        "measure_temperature",
+        "measure_ph",
+        "measure_orp",
+        "filtration_duration",
+        "pool_mode",
+        "alarm_generic"
+      ],
+      "pair": [
+        { "id": "list_my_devices", "template": "list_devices", "options": { "singular": true }, "navigation": { "next": "add_my_devices" } },
+        { "id": "add_my_devices", "template": "add_devices", "navigation": { "prev": "list_my_devices" } }
+      ]
+    }
+  ]
+}

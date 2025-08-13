@@ -1,0 +1,22 @@
+{
+  "actions": [
+    {
+      "title": {
+        "en": "Get recommended filtration duration",
+        "fr": "Lire la durée de filtration recommandée"
+      },
+      "args": [],
+      "tokens": [
+        {
+          "name": "duration_hours",
+          "type": "number",
+          "title": {
+            "en": "Duration (hours)",
+            "fr": "Durée (heures)"
+          }
+        }
+      ],
+      "id": "get_filtration_duration"
+    }
+  ]
+}
