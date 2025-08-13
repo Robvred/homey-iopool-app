@@ -1,0 +1,14 @@
+{
+  "type": "enum",
+  "title": { "en": "Pool mode", "fr": "Mode piscine" },
+  "getable": true,
+  "setable": false,
+  "values": [
+    { "id": "STANDARD",       "title": { "en": "Standard",       "fr": "Standard" } },
+    { "id": "OPENING",        "title": { "en": "Opening",        "fr": "Ouverture" } },
+    { "id": "WINTER",         "title": { "en": "Winter",         "fr": "Hivernage" } },
+    { "id": "INITIALIZATION", "title": { "en": "Initialization", "fr": "Initialisation" } }
+  ],
+  "insights": false,
+  "uiComponent": "picker"
+}

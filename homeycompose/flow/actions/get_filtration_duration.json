@@ -1,0 +1,20 @@
+{
+  "title": {
+    "en": "Get recommended filtration duration",
+    "fr": "Lire la durée de filtration recommandée"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=iopool"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "duration_hours",
+      "type": "number",
+      "title": { "en": "Duration (hours)", "fr": "Durée (heures)" }
+    }
+  ]
+}

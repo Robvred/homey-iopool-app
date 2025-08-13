@@ -1,0 +1,223 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.iopool.api",
+  "sdk": 3,
+  "name": {
+    "en": "iopool Pool Monitor",
+    "fr": "Moniteur iopool"
+  },
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "description": {
+    "en": "Monitor your iopool pool in Homey",
+    "fr": "Surveillez votre bassin iopool dans Homey"
+  },
+  "author": {
+    "name": "Robvred"
+  },
+  "category": "appliances",
+  "permissions": [],
+  "flow": {
+    "actions": [
+      {
+        "title": {
+          "en": "Get recommended filtration duration",
+          "fr": "Lire la durée de filtration recommandée"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=iopool"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "duration_hours",
+            "type": "number",
+            "title": {
+              "en": "Duration (hours)",
+              "fr": "Durée (heures)"
+            }
+          }
+        ],
+        "id": "get_filtration_duration"
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "iopool Pool",
+        "fr": "Piscine iopool"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_temperature",
+        "measure_ph",
+        "measure_orp",
+        "filtration_duration",
+        "pool_mode",
+        "alarm_generic"
+      ],
+      "defaultCapabilities": [
+        "measure_temperature"
+      ],
+      "capabilitiesOptions": {
+        "measure_temperature": {
+          "units": "°C"
+        }
+      },
+      "pair": [
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "options": {
+            "singular": true
+          },
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices",
+          "navigation": {
+            "prev": "list_my_devices"
+          }
+        }
+      ],
+      "id": "iopool",
+      "settings": [
+        {
+          "id": "apiKey",
+          "type": "password",
+          "label": {
+            "en": "API Key",
+            "fr": "Clé API"
+          },
+          "hint": {
+            "en": "Your iopool API token",
+            "fr": "Votre jeton iopool"
+          }
+        },
+        {
+          "id": "poolId",
+          "type": "text",
+          "label": {
+            "en": "Pool ID",
+            "fr": "ID de la piscine"
+          },
+          "hint": {
+            "en": "Pool identifier",
+            "fr": "Identifiant du bassin"
+          }
+        },
+        {
+          "id": "refreshMinutes",
+          "type": "number",
+          "label": {
+            "en": "Refresh interval (minutes)",
+            "fr": "Intervalle de rafraîchissement (minutes)"
+          },
+          "min": 1,
+          "max": 60,
+          "step": 1,
+          "value": 5
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "filtration_duration": {
+      "type": "number",
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "h",
+        "fr": "h"
+      },
+      "decimals": 1,
+      "min": 0,
+      "insights": true,
+      "uiComponent": "sensor",
+      "title": {
+        "en": "Filtration duration",
+        "fr": "Durée de filtration"
+      }
+    },
+    "measure_orp": {
+      "type": "number",
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "mV",
+        "fr": "mV"
+      },
+      "decimals": 0,
+      "min": 0,
+      "max": 1200,
+      "insights": true,
+      "uiComponent": "sensor",
+      "title": {
+        "en": "ORP",
+        "fr": "ORP"
+      }
+    },
+    "measure_ph": {
+      "type": "number",
+      "getable": true,
+      "setable": false,
+      "decimals": 2,
+      "min": 0,
+      "max": 14,
+      "insights": true,
+      "uiComponent": "sensor",
+      "title": {
+        "en": "pH",
+        "fr": "pH"
+      }
+    },
+    "pool_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Pool mode",
+        "fr": "Mode piscine"
+      },
+      "getable": true,
+      "setable": false,
+      "values": [
+        {
+          "id": "STANDARD",
+          "title": {
+            "en": "Standard",
+            "fr": "Standard"
+          }
+        },
+        {
+          "id": "OPENING",
+          "title": {
+            "en": "Opening",
+            "fr": "Ouverture"
+          }
+        },
+        {
+          "id": "WINTER",
+          "title": {
+            "en": "Winter",
+            "fr": "Hivernage"
+          }
+        },
+        {
+          "id": "INITIALIZATION",
+          "title": {
+            "en": "Initialization",
+            "fr": "Initialisation"
+          }
+        }
+      ],
+      "insights": false,
+      "uiComponent": "picker"
+    }
+  }
+}

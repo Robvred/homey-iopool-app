@@ -1,0 +1,38 @@
+[
+  {
+    "id": "apiKey",
+    "type": "password",
+    "label": {
+      "en": "API Key",
+      "fr": "Clé API"
+    },
+    "hint": {
+      "en": "Your iopool API token",
+      "fr": "Votre jeton iopool"
+    }
+  },
+  {
+    "id": "poolId",
+    "type": "text",
+    "label": {
+      "en": "Pool ID",
+      "fr": "ID de la piscine"
+    },
+    "hint": {
+      "en": "Pool identifier",
+      "fr": "Identifiant du bassin"
+    }
+  },
+  {
+    "id": "refreshMinutes",
+    "type": "number",
+    "label": {
+      "en": "Refresh interval (minutes)",
+      "fr": "Intervalle de rafraîchissement (minutes)"
+    },
+    "min": 1,
+    "max": 60,
+    "step": 1,
+    "value": 5
+  }
+]
