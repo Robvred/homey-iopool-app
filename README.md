@@ -18,6 +18,7 @@ Perfect for integrating your pool maintenance into Homey flows.
 Linux:
 ```shell
 curl --header 'x-api-key: APIKEY' https://api.iopool.com/v1/pools/
+```
 
 Windows:
 ```powershell
@@ -25,6 +26,7 @@ $headers=@{}
 $headers.Add("x-api-key", "APIKEY")
 $response = Invoke-WebRequest -Uri 'https://api.iopool.com/v1/pools/' -Method GET -Headers $headers
 $response
+```
 
 Response :
 ```json
@@ -48,7 +50,7 @@ Response :
     }
   }
 ]
-
+```
 ## Setup
 1. Enter your iopool API Key in the app settings.
 2. Select your pool from the list.
