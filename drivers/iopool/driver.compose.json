@@ -22,7 +22,23 @@
   ],
   "capabilitiesOptions": {
     "measure_temperature": {
-      "units": "°C"
+      "units": "°C",
+      "decimals": 2
+    },
+    "measure_ph": {
+      "units": "pH",
+      "decimals": 1
+    },
+    "measure_orp": {
+      "units": "mV",
+      "decimals": 0
+    },
+    "filtration_duration": {
+      "units": "min",
+      "decimals": 0
+    },
+    "pool_mode": {
+      "preventInsights": true
     }
   },
   "pair": [

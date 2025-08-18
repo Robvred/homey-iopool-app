@@ -9,6 +9,7 @@
   "author": { "name": "Robvred" },
   "category": "appliances",
   "permissions": [],
+  "platforms": ["local"],
 
   "icon": "assets/icon.svg",
   "images": {
@@ -39,5 +40,42 @@
         { "id": "add_my_devices", "template": "add_devices", "navigation": { "prev": "list_my_devices" } }
       ]
     }
-  ]
+  ],
+
+  "flow": {
+    "actions": [
+      {
+        "id": "get_filtration_duration",
+        "title": {
+          "en": "Get recommended filtration duration",
+          "fr": "Lire la durée de filtration recommandée"
+        },
+        "titleFormatted": {
+          "en": "Get filtration duration (min)",
+          "fr": "Lire la durée de filtration (min)"
+        },
+        "hint": {
+          "en": "Fetch recommended filtration duration for pump control",
+          "fr": "Récupère la durée de filtration recommandée pour piloter la pompe"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=iopool"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "duration_hours",
+            "type": "number",
+            "title": {
+              "en": "Duration (hours)",
+              "fr": "Durée (heures)"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }
