@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root { --pad: 12px; }
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; padding: var(--pad); }
+      .row { margin-bottom: var(--pad); }
+      label { font-weight: 600; margin-bottom: 6px; display: block; }
+      input, select, button { width: 100%; box-sizing: border-box; padding: 12px; font-size: 16px; }
+      .error { color: #b00020; margin-top: 8px; }
+      .hidden { display: none; }
+      .info { background:#f6f7f9; border-left:4px solid #3b82f6; padding:10px 12px; border-radius:4px; font-size:14px; line-height:1.4; }
+      .info strong { display:block; margin-bottom:6px; }
+      .info p { margin:6px 0; }
+    </style>
+  </head>
+  <body>
+    <div id="step-api">
+      <div class="row">
+        <label for="apiKey">API Key</label>
+        <input id="apiKey" type="text" autocomplete="off" spellcheck="false" placeholder="xxxx-xxxx-xxxx" />
+      </div>
+
+      <div class="row">
+        <div class="info">
+          <strong>Authentication / Authentification</strong>
+          <p><em>EN:</em> To authenticate with the API, you need an API key linked to your iopool account. You can find your API key at the bottom of the <strong>Settings</strong> page in the iopool app.</p>
+          <p><em>FR:</em> Pour vous authentifier auprès de l’API, vous devez obtenir une clé API liée à votre compte iopool. Vous trouverez votre clé API en bas de la page <strong>Paramètres</strong> de l’application iopool.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <button id="btnFetch" type="button">Fetch pools</button>
+      </div>
+      <div id="apiError" class="error hidden"></div>
+    </div>
+
+    <div id="step-pool" class="hidden">
+      <div class="row">
+        <label for="pool">Select your pool</label>
+        <select id="pool"></select>
+      </div>
+      <div class="row">
+        <label for="devname">Device name (optional)</label>
+        <input id="devname" type="text" placeholder="iopool Pool" />
+      </div>
+      <div class="row">
+        <button id="btnCreate" type="button">Add device</button>
+      </div>
+      <div id="poolError" class="error hidden"></div>
+    </div>
+
+    <script src="pair.js"></script>
+  </body>
+</html>

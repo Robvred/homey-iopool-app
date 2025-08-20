@@ -18,80 +18,35 @@
     "pool_mode",
     "alarm_generic"
   ],
-  "defaultCapabilities": [
-    "measure_temperature"
-  ],
+  "defaultCapabilities": ["measure_temperature"],
   "capabilitiesOptions": {
-    "measure_temperature": {
-      "units": "°C",
-      "decimals": 2
-    },
-    "measure_ph": {
-      "units": "pH",
-      "decimals": 1
-    },
-    "measure_orp": {
-      "units": "mV",
-      "decimals": 0
-    },
+    "measure_temperature": { "units": "°C", "decimals": 2 },
+    "measure_ph": { "units": "pH", "decimals": 1 },
+    "measure_orp": { "units": "mV", "decimals": 0 },
     "filtration_duration": {
       "units": "h",
       "decimals": 1,
       "preventInsights": true,
       "icon": "drivers/iopool/assets/icons/clock.svg"
     },
-    "pool_mode": {
-      "preventInsights": true
-    }
+    "pool_mode": { "preventInsights": true }
   },
   "pair": [
-    {
-      "id": "list_my_devices",
-      "template": "list_devices",
-      "navigation": {
-        "next": "add_my_device"
-      },
-      "options": {
-        "singular": true,
-        "placeholder": {
-          "en": "Add iopool Pool",
-          "fr": "Ajouter une piscine iopool"
-        }
-      }
-    },
-    {
-      "id": "add_my_device",
-      "template": "add_devices",
-      "navigation": {
-        "prev": "list_my_devices"
-      }
-    }
+    { "id": "pair" }
   ],
   "settings": [
     {
       "id": "apiKey",
       "type": "password",
-      "label": {
-        "en": "API Key",
-        "fr": "Clé API"
-      },
-      "hint": {
-        "en": "Your iopool API key",
-        "fr": "Votre clé API iopool"
-      },
+      "label": { "en": "API Key", "fr": "Clé API" },
+      "hint": { "en": "Your iopool API key", "fr": "Votre clé API iopool" },
       "value": ""
     },
     {
       "id": "poolId",
       "type": "text",
-      "label": {
-        "en": "Pool ID",
-        "fr": "ID de la piscine"
-      },
-      "hint": {
-        "en": "Your pool identifier",
-        "fr": "Identifiant de votre piscine"
-      },
+      "label": { "en": "Pool ID", "fr": "ID de la piscine" },
+      "hint": { "en": "Your pool identifier", "fr": "Identifiant de votre piscine" },
       "value": ""
     },
     {
@@ -103,7 +58,7 @@
       },
       "value": 30,
       "min": 15,
-	  "max": 60
+      "max": 60
     }
   ]
 }
