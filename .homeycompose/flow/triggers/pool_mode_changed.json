@@ -1,0 +1,24 @@
+{
+  "id": "pool_mode_changed",
+  "title": {
+    "en": "Pool mode changed",
+    "fr": "Le mode de la piscine a changé"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=iopool"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "mode",
+      "type": "string",
+      "title": {
+        "en": "Mode",
+        "fr": "Mode"
+      }
+    }
+  ]
+}

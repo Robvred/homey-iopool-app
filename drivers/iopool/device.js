@@ -35,10 +35,10 @@ class IopoolDevice extends Homey.Device {
     if (changedKeys.includes('poolId')) {
       this.poolId = (newSettings.poolId || '').trim();
     }
-if (changedKeys.includes('pollingInterval')) {
-  this.pollingInterval = Math.min(60, Math.max(15, newSettings.pollingInterval));
-  this.startPolling();
-}
+    if (changedKeys.includes('pollingInterval')) {
+      this.pollingInterval = Math.min(60, Math.max(15, newSettings.pollingInterval));
+      this.startPolling();
+    }
 
     this.pollData();
   }
@@ -88,9 +88,7 @@ if (changedKeys.includes('pollingInterval')) {
       }
 
       const pools = await response.json();
-      if (!Array.isArray(pools)) {
-        throw new Error('Unexpected API response (not an array)');
-      }
+      if (!Array.isArray(pools)) throw new Error('Unexpected API response (not an array)');
 
       const pool = pools.find(p => p && p.id === this.poolId);
       if (!pool) {
@@ -114,7 +112,6 @@ if (changedKeys.includes('pollingInterval')) {
     if (!input || typeof input !== 'string') return undefined;
     const v = input.trim().toUpperCase();
 
-    // Alias connus
     const aliases = {
       'GATEWAY': 'STANDARD',
       'NORMAL': 'STANDARD',
@@ -130,39 +127,44 @@ if (changedKeys.includes('pollingInterval')) {
     return allowed.has(mapped) ? mapped : undefined;
   }
 
-  updateCapabilitiesFromPool(pool) {
+  async updateCapabilitiesFromPool(pool) {
     const lm = pool.latestMeasure || {};
 
-    // Température (°C)
     if (typeof lm.temperature === 'number') {
       this.setCapabilityValue('measure_temperature', lm.temperature).catch(this.error);
     }
-
-    // pH
     if (typeof lm.ph === 'number') {
       this.setCapabilityValue('measure_ph', lm.ph).catch(this.error);
     }
-
-    // ORP (mV)
     if (typeof lm.orp === 'number') {
       this.setCapabilityValue('measure_orp', lm.orp).catch(this.error);
     }
-
-    // Durée de filtration (heures)
     if (pool.advice && typeof pool.advice.filtrationDuration === 'number') {
       this.setCapabilityValue('filtration_duration', pool.advice.filtrationDuration).catch(this.error);
     }
 
-    // Mode (enum)
+    // Mode (enum) + déclenchement du trigger Flow si changement
     const rawMode = (lm.mode ?? pool.mode);
     const norm = this.normalizeMode(rawMode);
+
     if (norm) {
-      this.setCapabilityValue('pool_mode', norm).catch(this.error);
+      const prev = this.getCapabilityValue('pool_mode');
+      if (prev !== norm) {
+        await this.setCapabilityValue('pool_mode', norm).catch(this.error);
+        // Déclenche le Flow trigger "pool_mode_changed"
+        try {
+          const trigger = this.homey.app && this.homey.app.flowTriggerPoolMode;
+          if (trigger) {
+            await trigger.trigger(this, { mode: norm }, { mode: norm });
+          }
+        } catch (e) {
+          this.log('Flow trigger error:', e.message);
+        }
+      }
     } else if (rawMode) {
       this.log(`Unknown pool_mode '${rawMode}', ignoring (expects STANDARD|OPENING|WINTER|INITIALIZATION)`);
     }
 
-    // Action requise -> bool
     if (typeof pool.hasAnActionRequired === 'boolean') {
       this.setCapabilityValue('alarm_generic', pool.hasAnActionRequired).catch(this.error);
     }

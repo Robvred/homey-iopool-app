@@ -1,0 +1,18 @@
+{
+  "id": "action_required",
+  "title": {
+    "en": "Action required?",
+    "fr": "Action requise ?"
+  },
+  "hint": {
+    "en": "Returns true if the pool requires an action",
+    "fr": "Vrai si la piscine nécessite une action"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=iopool"
+    }
+  ]
+}
