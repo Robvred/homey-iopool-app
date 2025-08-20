@@ -5,7 +5,7 @@
     "en": "iopool Pool Monitor",
     "fr": "Moniteur iopool"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "compatibility": ">=5.0.0",
   "description": {
     "en": "The health of your pool at a glance.",
