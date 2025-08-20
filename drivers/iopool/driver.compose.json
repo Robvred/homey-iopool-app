@@ -7,7 +7,8 @@
   "icon": "drivers/iopool/assets/icon.svg",
   "images": {
     "large": "drivers/iopool/assets/large.png",
-    "small": "drivers/iopool/assets/small.png"
+    "small": "drivers/iopool/assets/small.png",
+	"xlarge": "drivers/iopool/assets/xlarge.png"
   },
   "capabilities": [
     "measure_temperature",
@@ -15,8 +16,7 @@
     "measure_orp",
     "filtration_duration",
     "pool_mode",
-    "alarm_generic",
-    "last_update"
+    "alarm_generic"
   ],
   "defaultCapabilities": [
     "measure_temperature"
@@ -41,11 +41,6 @@
     "pool_mode": {
       "preventInsights": true
     },
-    "last_update": {
-      "title": {
-        "en": "Last update",
-        "fr": "Dernière mise à jour"
-      },
       "preventInsights": true,
       "icon": "drivers/iopool/assets/icons/clock.svg"
     }

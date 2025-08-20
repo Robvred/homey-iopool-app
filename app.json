@@ -112,8 +112,7 @@
         "measure_orp",
         "filtration_duration",
         "pool_mode",
-        "alarm_generic",
-        "last_update"
+        "alarm_generic"
       ],
       "defaultCapabilities": [
         "measure_temperature"
@@ -224,21 +223,6 @@
         "en": "Filtration duration",
         "fr": "Durée de filtration"
       }
-    },
-    "last_update": {
-      "type": "string",
-      "title": {
-        "en": "Last update",
-        "fr": "Dernière mise à jour"
-      },
-      "desc": {
-        "en": "Timestamp of the latest data received from iopool",
-        "fr": "Horodatage des dernières données reçues depuis iopool"
-      },
-      "getable": true,
-      "setable": false,
-      "uiComponent": "sensor",
-      "icon": "drivers/iopool/assets/icons/clock.svg"
     },
     "measure_orp": {
       "type": "number",

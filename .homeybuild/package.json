@@ -4,7 +4,6 @@
   "description": "iopool integration for Homey",
   "main": "app.js",
   "dependencies": {
-    "moment": "^2.30.1",
     "node-fetch": "^2.7.0"
   }
 }
