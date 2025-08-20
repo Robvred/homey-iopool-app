@@ -1,89 +1,95 @@
 'use strict';
 
 const { Device } = require('homey');
+const fetch = require('node-fetch');
+const moment = require('moment');
 
 class IopoolDevice extends Device {
 
   async onInit() {
-    this.log('Iopool device has been initialized');
+    this.log('Iopool device initialized');
 
-    // Start polling
-    this.pollInterval = setInterval(() => {
-      this.updateMeasurements();
-    }, (this.getSetting('refreshMinutes') || 5) * 60 * 1000);
+    this.apiKey = this.getSetting('apiKey');
+    this.poolId = this.getSetting('poolId');
+    this.refreshMinutes = this.getSetting('refreshMinutes') || 5;
 
-    // Do first update right away
-    this.updateMeasurements();
+    // schedule refresh
+    this.interval = setInterval(() => {
+      this.updateMeasurements().catch(this.error);
+    }, this.refreshMinutes * 60 * 1000);
+
+    // initial update
+    this.updateMeasurements().catch(this.error);
   }
 
   async onAdded() {
-    this.log('Iopool device has been added');
+    this.log('Iopool device added');
   }
 
   async onDeleted() {
-    this.log('Iopool device has been deleted');
-    if (this.pollInterval) {
-      clearInterval(this.pollInterval);
-    }
+    this.log('Iopool device deleted');
+    if (this.interval) clearInterval(this.interval);
   }
 
   async updateMeasurements() {
+    if (!this.apiKey || !this.poolId) {
+      this.error('Missing API Key or Pool ID');
+      return;
+    }
+
+    const url = `https://api.iopool.com/v1/pools/${this.poolId}`;
+    this.log('Fetching data from', url);
+
     try {
-      const apiKey = this.getSetting('apiKey');
-      const poolId = this.getSetting('poolId');
-
-      if (!apiKey || !poolId) {
-        this.log('Missing API key or poolId');
-        return;
-      }
-
-      const response = await this.homey.cloud.request({
-        method: 'GET',
-        url: `https://api.iopool.com/v1/pools/${poolId}`,
+      const response = await fetch(url, {
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
+          'Authorization': `Bearer ${this.apiKey}`,
           'Content-Type': 'application/json'
         }
       });
 
-      if (!response || !response.result) {
-        this.log('No response from API');
+      if (!response.ok) {
+        this.error('API request failed', response.status);
         return;
       }
 
-      const data = response.result;
-      const latest = data.latestMeasure;
+      const data = await response.json();
+      this.log('API response', data);
 
-      if (latest) {
-        if (typeof latest.temperature !== 'undefined') {
-          await this.setCapabilityValue('measure_temperature', latest.temperature);
-        }
-        if (typeof latest.ph !== 'undefined') {
-          await this.setCapabilityValue('measure_ph', latest.ph);
-        }
-        if (typeof latest.orp !== 'undefined') {
-          await this.setCapabilityValue('measure_orp', latest.orp);
-        }
-        if (typeof data.advice?.filtrationDuration !== 'undefined') {
-          await this.setCapabilityValue('filtration_duration', data.advice.filtrationDuration);
-        }
-        if (typeof latest.mode !== 'undefined') {
-          await this.setCapabilityValue('pool_mode', latest.mode);
-        }
-        if (typeof data.hasAnActionRequired !== 'undefined') {
-          await this.setCapabilityValue('alarm_generic', data.hasAnActionRequired);
-        }
-        if (typeof latest.measuredAt !== 'undefined') {
-          // Convert timestamp to human-readable string
-          const date = new Date(latest.measuredAt);
-          await this.setCapabilityValue('last_update', date.toISOString());
-        }
+      const latest = data.latestMeasure || {};
+      const advice = data.advice || {};
+
+      // Mise à jour des capabilities
+      if (typeof latest.temperature === 'number') {
+        await this.setCapabilityValue('measure_temperature', latest.temperature);
+      }
+      if (typeof latest.ph === 'number') {
+        await this.setCapabilityValue('measure_ph', latest.ph);
+      }
+      if (typeof latest.orp === 'number') {
+        await this.setCapabilityValue('measure_orp', latest.orp);
+      }
+      if (typeof advice.filtrationDuration === 'number') {
+        await this.setCapabilityValue('filtration_duration', advice.filtrationDuration);
+      }
+      if (typeof latest.mode === 'string') {
+        await this.setCapabilityValue('pool_mode', latest.mode);
+      }
+      if (typeof data.hasAnActionRequired === 'boolean') {
+        await this.setCapabilityValue('alarm_generic', data.hasAnActionRequired);
+      }
+
+      // Ajout du champ last_update formaté
+      if (latest.measuredAt) {
+        const formattedDate = moment(latest.measuredAt).format('DD/MM/YYYY HH:mm');
+        await this.setCapabilityValue('last_update', formattedDate);
       }
 
     } catch (err) {
-      this.log('Error updating measurements', err);
+      this.error('Error fetching or parsing data', err);
     }
   }
+
 }
 
 module.exports = IopoolDevice;

@@ -101,7 +101,7 @@
         "fr": "Piscine iopool"
       },
       "class": "sensor",
-      "icon": "drivers/iopool/assets/icons/thermometer.svg",
+      "icon": "drivers/iopool/assets/icon.svg",
       "images": {
         "large": "drivers/iopool/assets/large.png",
         "small": "drivers/iopool/assets/small.png"
@@ -112,7 +112,8 @@
         "measure_orp",
         "filtration_duration",
         "pool_mode",
-        "alarm_generic"
+        "alarm_generic",
+        "last_update"
       ],
       "defaultCapabilities": [
         "measure_temperature"
@@ -120,30 +121,30 @@
       "capabilitiesOptions": {
         "measure_temperature": {
           "units": "°C",
-          "decimals": 2,
-          "icon": "drivers/iopool/assets/icons/thermometer.svg"
+          "decimals": 2
         },
         "measure_ph": {
           "units": "pH",
-          "decimals": 1,
-          "icon": "drivers/iopool/assets/icons/beaker.svg"
+          "decimals": 1
         },
         "measure_orp": {
           "units": "mV",
-          "decimals": 0,
-          "icon": "drivers/iopool/assets/icons/atom.svg"
+          "decimals": 0
         },
         "filtration_duration": {
           "units": "min",
-          "decimals": 0,
-          "icon": "drivers/iopool/assets/icons/timer.svg"
+          "decimals": 0
         },
         "pool_mode": {
-          "preventInsights": true,
-          "icon": "drivers/iopool/assets/icons/waves.svg"
+          "preventInsights": true
         },
-        "alarm_generic": {
-          "icon": "drivers/iopool/assets/icons/triangle-alert.svg"
+        "last_update": {
+          "title": {
+            "en": "Last update",
+            "fr": "Dernière mise à jour"
+          },
+          "preventInsights": true,
+          "icon": "drivers/iopool/assets/icons/clock.svg"
         }
       },
       "pair": [
@@ -223,6 +224,21 @@
         "en": "Filtration duration",
         "fr": "Durée de filtration"
       }
+    },
+    "last_update": {
+      "type": "string",
+      "title": {
+        "en": "Last update",
+        "fr": "Dernière mise à jour"
+      },
+      "desc": {
+        "en": "Timestamp of the latest data received from iopool",
+        "fr": "Horodatage des dernières données reçues depuis iopool"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "drivers/iopool/assets/icons/clock.svg"
     },
     "measure_orp": {
       "type": "number",
