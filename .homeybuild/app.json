@@ -6,11 +6,11 @@
     "en": "iopool Pool Monitor",
     "fr": "Moniteur iopool"
   },
-  "version": "1.0.0",
+  "version": "1.0.2",
   "compatibility": ">=5.0.0",
   "description": {
-    "en": "Monitor your iopool pool in Homey",
-    "fr": "Surveillez votre bassin iopool dans Homey"
+    "en": "The health of your pool at a glance.",
+    "fr": "La santé de votre piscine en un coup d’œil."
   },
   "brandColor": "#00A9B4",
   "author": {
@@ -18,10 +18,53 @@
   },
   "category": "appliances",
   "permissions": [],
+  "platforms": [
+    "local"
+  ],
+  "tags": {
+    "en": [
+      "pool",
+      "iopool",
+      "water",
+      "temperature",
+      "ph",
+      "orp",
+      "filtration"
+    ],
+    "fr": [
+      "piscine",
+      "iopool",
+      "eau",
+      "température",
+      "ph",
+      "orp",
+      "filtration"
+    ]
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Robvred"
+      }
+    ],
+    "translators": [
+      {
+        "name": "Robvred"
+      }
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/Robvred/homey-iopool-app/issues"
+  },
+  "homepage": "https://github.com/Robvred/homey-iopool-app",
+  "support": "https://community.homey.app/t/app-pro-iopool-api-pool-monitoring/141600",
+  "source": "https://github.com/Robvred/homey-iopool-app",
+  "homeyCommunityTopicId": 141600,
   "icon": "assets/icon.svg",
   "images": {
+    "small": "assets/small.png",
     "large": "assets/large.png",
-    "small": "assets/small.png"
+    "xlarge": "assets/xlarge.png"
   },
   "flow": {
     "actions": [
@@ -58,7 +101,7 @@
         "fr": "Piscine iopool"
       },
       "class": "sensor",
-      "icon": "drivers/iopool/assets/icon.svg",
+      "icon": "drivers/iopool/assets/icons/thermometer.svg",
       "images": {
         "large": "drivers/iopool/assets/large.png",
         "small": "drivers/iopool/assets/small.png"
@@ -76,7 +119,31 @@
       ],
       "capabilitiesOptions": {
         "measure_temperature": {
-          "units": "°C"
+          "units": "°C",
+          "decimals": 2,
+          "icon": "drivers/iopool/assets/icons/thermometer.svg"
+        },
+        "measure_ph": {
+          "units": "pH",
+          "decimals": 1,
+          "icon": "drivers/iopool/assets/icons/beaker.svg"
+        },
+        "measure_orp": {
+          "units": "mV",
+          "decimals": 0,
+          "icon": "drivers/iopool/assets/icons/atom.svg"
+        },
+        "filtration_duration": {
+          "units": "min",
+          "decimals": 0,
+          "icon": "drivers/iopool/assets/icons/timer.svg"
+        },
+        "pool_mode": {
+          "preventInsights": true,
+          "icon": "drivers/iopool/assets/icons/waves.svg"
+        },
+        "alarm_generic": {
+          "icon": "drivers/iopool/assets/icons/triangle-alert.svg"
         }
       },
       "pair": [

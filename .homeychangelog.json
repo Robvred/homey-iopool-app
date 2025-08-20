@@ -1,5 +1,11 @@
 {
   "1.0.0": {
     "en": "Monitor your iopool pool in Homey"
+  },
+  "1.0.1": {
+    "en": "Instructions for POOL ID access & APP Informations"
+  },
+  "1.0.2": {
+    "en": "Images & Readme Conformity"
   }
 }

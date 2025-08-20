@@ -1,26 +1,77 @@
 {
   "id": "com.iopool.api",
   "sdk": 3,
-  "name": { "en": "iopool Pool Monitor", "fr": "Moniteur iopool" },
-  "version": "1.0.0",
+  "name": {
+    "en": "iopool Pool Monitor",
+    "fr": "Moniteur iopool"
+  },
+  "version": "1.0.2",
   "compatibility": ">=5.0.0",
-  "description": { "en": "Monitor your iopool pool in Homey", "fr": "Surveillez votre bassin iopool dans Homey" },
+  "description": {
+    "en": "The health of your pool at a glance.",
+    "fr": "La santé de votre piscine en un coup d’œil."
+  },
   "brandColor": "#00A9B4",
-  "author": { "name": "Robvred" },
+  "author": {
+    "name": "Robvred"
+  },
   "category": "appliances",
   "permissions": [],
-  "platforms": ["local"],
-
+  "platforms": [
+    "local"
+  ],
+  "tags": {
+    "en": [
+      "pool",
+      "iopool",
+      "water",
+      "temperature",
+      "ph",
+      "orp",
+      "filtration"
+    ],
+    "fr": [
+      "piscine",
+      "iopool",
+      "eau",
+      "température",
+      "ph",
+      "orp",
+      "filtration"
+    ]
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Robvred"
+      }
+    ],
+    "translators": [
+      {
+        "name": "Robvred"
+      }
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/Robvred/homey-iopool-app/issues"
+  },
+  "homepage": "https://github.com/Robvred/homey-iopool-app",
+  "support": "https://community.homey.app/t/app-pro-iopool-api-pool-monitoring/141600",
+  "source": "https://github.com/Robvred/homey-iopool-app",
+  "homeyCommunityTopicId": 141600,
   "icon": "assets/icon.svg",
   "images": {
+    "small": "assets/small.png",
     "large": "assets/large.png",
-    "small": "assets/small.png"
+    "xlarge": "assets/xlarge.png"
   },
-
   "drivers": [
     {
       "id": "iopool",
-      "name": { "en": "iopool Pool", "fr": "Piscine iopool" },
+      "name": {
+        "en": "iopool Pool",
+        "fr": "Piscine iopool"
+      },
       "class": "sensor",
       "icon": "drivers/iopool/assets/icon.svg",
       "images": {
@@ -36,12 +87,26 @@
         "alarm_generic"
       ],
       "pair": [
-        { "id": "list_my_devices", "template": "list_devices", "options": { "singular": true }, "navigation": { "next": "add_my_devices" } },
-        { "id": "add_my_devices", "template": "add_devices", "navigation": { "prev": "list_my_devices" } }
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "options": {
+            "singular": true
+          },
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices",
+          "navigation": {
+            "prev": "list_my_devices"
+          }
+        }
       ]
     }
   ],
-
   "flow": {
     "actions": [
       {

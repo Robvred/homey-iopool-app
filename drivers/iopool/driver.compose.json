@@ -15,7 +15,8 @@
     "measure_orp",
     "filtration_duration",
     "pool_mode",
-    "alarm_generic"
+    "alarm_generic",
+    "last_update"
   ],
   "defaultCapabilities": [
     "measure_temperature"
@@ -39,6 +40,14 @@
     },
     "pool_mode": {
       "preventInsights": true
+    },
+    "last_update": {
+      "title": {
+        "en": "Last update",
+        "fr": "Dernière mise à jour"
+      },
+      "preventInsights": true,
+      "icon": "drivers/iopool/assets/icons/clock.svg"
     }
   },
   "pair": [
