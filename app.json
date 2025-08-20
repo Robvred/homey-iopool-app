@@ -132,8 +132,8 @@
           "decimals": 0
         },
         "filtration_duration": {
-          "units": "min",
-          "decimals": 0,
+          "units": "h",
+          "decimals": 1,
           "preventInsights": true,
           "icon": "drivers/iopool/assets/icons/clock.svg"
         },
@@ -145,15 +145,19 @@
         {
           "id": "list_my_devices",
           "template": "list_devices",
-          "options": {
-            "singular": true
-          },
           "navigation": {
-            "next": "add_my_devices"
+            "next": "add_my_device"
+          },
+          "options": {
+            "singular": true,
+            "placeholder": {
+              "en": "Add iopool Pool",
+              "fr": "Ajouter une piscine iopool"
+            }
           }
         },
         {
-          "id": "add_my_devices",
+          "id": "add_my_device",
           "template": "add_devices",
           "navigation": {
             "prev": "list_my_devices"
