@@ -104,7 +104,8 @@
       "icon": "drivers/iopool/assets/icon.svg",
       "images": {
         "large": "drivers/iopool/assets/large.png",
-        "small": "drivers/iopool/assets/small.png"
+        "small": "drivers/iopool/assets/small.png",
+        "xlarge": "drivers/iopool/assets/xlarge.png"
       },
       "capabilities": [
         "measure_temperature",
@@ -132,18 +133,12 @@
         },
         "filtration_duration": {
           "units": "min",
-          "decimals": 0
+          "decimals": 0,
+          "preventInsights": true,
+          "icon": "drivers/iopool/assets/icons/clock.svg"
         },
         "pool_mode": {
           "preventInsights": true
-        },
-        "last_update": {
-          "title": {
-            "en": "Last update",
-            "fr": "Dernière mise à jour"
-          },
-          "preventInsights": true,
-          "icon": "drivers/iopool/assets/icons/clock.svg"
         }
       },
       "pair": [
