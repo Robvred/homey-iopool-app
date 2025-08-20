@@ -1,0 +1,16 @@
+{
+  "env": { "es2022": true, "node": true },
+  "extends": ["eslint:recommended"],
+  "parserOptions": { "ecmaVersion": 2022, "sourceType": "module" },
+  "rules": {
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    "no-undef": "error",
+    "no-console": "off",
+    "eqeqeq": ["error", "always"],
+    "curly": ["error", "all"],
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"],
+    "indent": ["error", 2, { "SwitchCase": 1 }]
+  },
+  "ignorePatterns": ["node_modules/", "coverage/", "reports/", ".homeybuild/"]
+}
