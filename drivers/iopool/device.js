@@ -10,7 +10,7 @@ class IopoolDevice extends Homey.Device {
 
     this.apiKey = (this.getSetting('apiKey') || '').trim();
     this.poolId = (this.getSetting('poolId') || '').trim();
-    this.pollingInterval = this.getSetting('pollingInterval') || 5;
+    this.pollingInterval = Math.min(60, Math.max(15, this.getSetting('pollingInterval') || 30));
 
     this._isAvailable = true;
 
@@ -35,10 +35,10 @@ class IopoolDevice extends Homey.Device {
     if (changedKeys.includes('poolId')) {
       this.poolId = (newSettings.poolId || '').trim();
     }
-    if (changedKeys.includes('pollingInterval')) {
-      this.pollingInterval = newSettings.pollingInterval;
-      this.startPolling();
-    }
+if (changedKeys.includes('pollingInterval')) {
+  this.pollingInterval = Math.min(60, Math.max(15, newSettings.pollingInterval));
+  this.startPolling();
+}
 
     this.pollData();
   }

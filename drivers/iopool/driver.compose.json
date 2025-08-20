@@ -101,8 +101,9 @@
         "en": "Polling interval (minutes)",
         "fr": "Intervalle de polling (minutes)"
       },
-      "value": 5,
-      "min": 1
+      "value": 30,
+      "min": 15,
+	  "max": 60
     }
   ]
 }
