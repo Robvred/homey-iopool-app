@@ -1,0 +1,27 @@
+# SCM / IDE
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Builds Homey
+.homeybuild/
+.homeycompose/flow/preview/
+
+# Deps & caches
+node_modules/
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+
+# Docs & miscell
+README.txt
+*.md
+*.ps1
+*.sh
+.DS_Store
+Thumbs.db
+
+# Tests / CI
+coverage/
+reports/
